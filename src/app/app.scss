@@ -1,0 +1,98 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    height: 90px;
+    overflow: hidden;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+}
+
+.menu:last-child {
+    justify-content: flex-end;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    &:hover, &.active {
+        border-bottom: 1px rgb(255, 255, 255) solid;
+    }
+    &[aria-label="GitHub"] {
+        color: #fcfcfc;
+        &:hover { border-bottom: none; }
+    }
+    &[aria-label="LinkedIn"] {
+        color: #0A66C2;
+        &:hover { border-bottom: none; }
+    }
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    padding: 80px 0;
+}
+
+.profile-wrapper {
+    position: relative;
+    display: inline-block;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: 2px solid #48d0ff;
+        border-radius: 16px;
+        transform: translate(12px, 12px);
+        z-index: 0;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -24px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #48d0ff, transparent);
+    }
+}
+
+.profile-image {
+    position: relative;
+    z-index: 1;
+    width: 320px;
+    border-radius: 16px;
+    display: block;
+}
+
+.logo img {
+    height: 200px;
+}
+
+.intro h1 {
+    max-width: 600px;
+    color: #d9d9d9;
+    line-height: 1.6;
+    font: bold 60px/1.6 'Arial', sans-serif;
+}
+
+.intro p {
+    max-width: 600px;
+    color: #d9d9d9;
+    line-height: 1.6;
+    font: 20px/1.6 'Arial', sans-serif;
+}
