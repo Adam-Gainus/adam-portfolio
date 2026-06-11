@@ -11,4 +11,9 @@ import { Introduction } from './components/introduction/introduction';
 })
 export class App {
   protected readonly title = signal('my-portfolio');
+  protected menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
 }
