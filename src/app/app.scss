@@ -3,6 +3,17 @@
     margin: 0 auto;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 header {
     display: flex;
     align-items: center;
@@ -10,6 +21,7 @@ header {
     font-weight: 500;
     height: 90px;
     overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .menu {
@@ -44,6 +56,7 @@ header a {
     justify-content: center;
     gap: 60px;
     padding: 80px 0;
+    animation: fadeIn 0.8s ease-out 0.2s backwards;
 }
 
 .profile-wrapper {
@@ -80,12 +93,23 @@ header a {
     max-width: 600px;
     margin: 0;
     color: #d9d9d9;
-    font: bold 60px/1.4 'Arial', sans-serif;
+    font: bold 60px/1.4 'titillium web', sans-serif;
 }
 
 .intro p {
     max-width: 600px;
     color: #d9d9d9;
     line-height: 1.6;
-    font: 20px/1.6 'Arial', sans-serif;
+    font: 20px/1.6 'titillium web', sans-serif;
+}
+
+footer {
+    animation: fadeIn 0.8s ease-out 0.4s backwards;
+}
+
+footer p {
+    text-align: center;
+    padding: 20px 0;
+    color: #ffffff;
+    font-size: 14px;
 }
