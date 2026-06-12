@@ -15,4 +15,8 @@ export class App {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
 }
