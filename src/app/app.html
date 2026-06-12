@@ -8,10 +8,10 @@
         <span></span>
       </button>
       <div class="menu nav-menu" [class.open]="menuOpen">
-        <a class="active">Home</a>
-        <a>About</a>
-        <a>Projects</a>
-        <a>Contact</a>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/projects" routerLinkActive="active">Projects</a>
+        <a routerLink="/contact" routerLinkActive="active">Contact</a>
       </div>
       <div class="logo">
         <img src="images/logo.png" alt="logo" class="logo-image">
@@ -31,15 +31,7 @@
         </a>
       </div>
     </header>
-    <div class="content">
-      <div class="profile-wrapper">
-        <img src="images/adam2.JPG" alt="adam" class="profile-image">
-      </div>
-      <div class="intro">
-        <h1>Adam Gainus</h1>
-        <p>I am a novice web programmer, eager to learn and grow in the field of web development. I recently graduated from Mountainland Technical College in Web Programming and Development. I am currently looking for externship or internship opportunities to gain practical experience and further develop my skills.</p>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
     <footer>
       <p>This web is built on Angular.</p>
       <p>&copy; 2026 Adam Gainus</p>
