@@ -1,11 +1,17 @@
+:host {
+    display: block;
+    padding: 80px 0;
+}
+
 .about {
+    position: relative;
     text-align: center;
     color: #d9d9d9;
     font-family: 'titillium web', sans-serif;
     animation: fadeIn 0.8s ease-out 0.2s backwards;
     border: #48d0ff 1px solid;
     background: #161c20;
-    padding: 20px;
+    padding: 280px 20px 20px;
     border-radius: 25px;
     max-width: 600px;
     margin: 0 auto;
@@ -14,4 +20,42 @@
 .about h2 {
     font-size: 36px;
     margin: 0 0 10px;
+}
+
+@media (max-width: 768px) {
+    :host {
+        padding: 40px 0;
+    }
+
+    .about {
+        padding-top: 190px;
+    }
+
+    .about-image-wrapper {
+        top: -30px;
+    }
+
+    .about-image {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.about-image-wrapper {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    padding: 10px;
+    background: linear-gradient(135deg, #48d0ff, #014048);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.about-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
