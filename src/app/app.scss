@@ -95,10 +95,12 @@ header a {
     }
     &[aria-label="GitHub"] {
         color: #fcfcfc;
+        font-size: 35px;
         &:hover { border-bottom: none; }
     }
     &[aria-label="LinkedIn"] {
         color: #0A66C2;
+        font-size: 35px;
         &:hover { border-bottom: none; }
     }
 }

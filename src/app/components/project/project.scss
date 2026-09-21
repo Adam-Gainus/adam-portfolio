@@ -26,3 +26,46 @@
         padding: 40px 0;
     }
 }
+
+.project-title {
+    font-size: 24px;
+    color: #48d0ff;
+    margin: 0 0 16px;
+}
+
+.project p {
+    line-height: 1.6;
+    margin: 0 0 16px;
+    text-align: left;
+}
+
+.project img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 16px;
+}
+
+.project-divider {
+    border: none;
+    border-top: 1px solid #48d0ff;
+    margin: 24px 0 0;
+    opacity: 0.4;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 24px;
+    border: 1px solid #48d0ff;
+    border-radius: 20px;
+    color: #48d0ff;
+    text-decoration: none;
+    font-family: 'titillium web', sans-serif;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: #48d0ff;
+        color: #161c20;
+    }
+}

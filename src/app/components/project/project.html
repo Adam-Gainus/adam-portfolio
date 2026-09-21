@@ -1,6 +1,40 @@
 <section class="project">
   <h2>Projects</h2>
-  <h3>This is Pokemon matching card game built on an Angular framework.</h3>
+
+  <h3 class="project-title">Pokémon Memory Game</h3>
+
+  <p>A Pokémon-themed memory matching game where players flip cards to find matching pairs. Supports single-player and multiplayer modes for up to 4 players, with a configurable setup screen featuring a spinning Pokéball animation.</p>
+
   <img src="images/setup.png" alt="Pokemon matching card game setup" class="project-image">
-  <p></p>
+  <img src="images/game.png" alt="Pokemon matching card game in progress" class="project-image">
+
+  <p>The game tracks moves and matches in real time across a 4×4 card grid, with smooth flip animations on every card and a Stats page to review past performance. Pokémon are loaded dynamically from the PokéAPI so each game pulls real Pokémon data.</p>
+
+  <p>Built with Angular and TypeScript as a team project. I owned the frontend — card flip animations, match detection logic, move counter, win state, and the PokéAPI integration. My partner handled the backend.</p>
+
+  <p>The trickiest part was locking input while two cards were already revealed, so players couldn't flip a third card before the mismatch animation finished and the cards flipped back.</p>
+
+  <a class="project-link" href="https://github.com/Adam-Gainus/pokemonmatchingcardgame" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+
+  <hr class="project-divider">
+
+  <h3 class="project-title">Capstone Project — Student Portal</h3>
+
+  <p>A full student portal web application built as my capstone project at Mountainland Technical College. The portal supports two separate user types — students and administrators — each with their own login flow and dedicated interface.</p>
+
+  <img src="images/frontpage.png" alt="Capstone project front page" class="project-image">
+  <img src="images/login.png" alt="Capstone login" class="project-image">
+  <img src="images/registration.png" alt="Capstone registration" class="project-image">
+  <img src="images/Adminpage.png" alt="Capstone admin page" class="project-image">
+
+  <p>Students can register for an account, log in, and browse a course catalog displaying each course's name, credit hours, and tuition price. Administrators log in through a separate entry point and have access to an admin dashboard to manage the portal.</p>
+
+  <p>Built with React and Vite on the frontend. I handled the majority of the frontend — the landing page, student registration and login, the admin login and dashboard, and the course catalog UI. I also designed and wrote the SQL database schema for the courses table, defining the structure for course names, credit hours, and pricing.</p>
+
+  <p>One of the more interesting challenges was managing two completely separate login flows within the same app — making sure students and admins were routed to the right interfaces after authenticating, with the admin side locked off from regular student accounts.</p>
+
+  <a class="project-link" href="https://github.com/Adam-Gainus/capstone" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+
+  <hr class="project-divider">
+
 </section>

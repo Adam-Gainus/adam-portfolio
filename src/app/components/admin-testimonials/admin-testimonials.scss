@@ -1,0 +1,203 @@
+:host {
+    display: block;
+    padding: 80px 0;
+}
+
+.admin-testimonials {
+    text-align: center;
+    color: #d9d9d9;
+    font-family: 'titillium web', sans-serif;
+    border: #48d0ff 1px solid;
+    background: #161c20;
+    padding: 20px;
+    border-radius: 25px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.admin-testimonials h2 {
+    font-size: 36px;
+    margin: 0 0 20px;
+}
+
+@media (max-width: 768px) {
+    :host {
+        padding: 40px 0;
+    }
+}
+
+.unlock-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 260px;
+    margin: 0 auto;
+
+    input {
+        background: #0d1114;
+        border: 1px solid #48d0ff;
+        border-radius: 8px;
+        color: #d9d9d9;
+        font-family: 'titillium web', sans-serif;
+        padding: 8px 10px;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(72, 208, 255, 0.4);
+        }
+    }
+
+    > button {
+        margin-top: 8px;
+        padding: 10px 24px;
+        border: 1px solid #48d0ff;
+        border-radius: 20px;
+        background: transparent;
+        color: #48d0ff;
+        font-family: 'titillium web', sans-serif;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover:not(:disabled) {
+            background: #48d0ff;
+            color: #161c20;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+
+    input {
+        flex: 1;
+        padding-right: 36px;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #48d0ff;
+        cursor: pointer;
+        padding: 4px 6px;
+        font-size: 14px;
+
+        &:hover {
+            color: #d9d9d9;
+        }
+    }
+}
+
+.admin-error {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin: 0;
+}
+
+.admin-testimonials h3 {
+    font-size: 20px;
+    color: #48d0ff;
+    margin: 16px 0 8px;
+}
+
+.admin-divider {
+    border: none;
+    border-top: 1px solid #48d0ff;
+    margin: 24px 0;
+    opacity: 0.4;
+}
+
+.pending-empty {
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.pending-card {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #1c242b;
+    border: 1px solid rgba(72, 208, 255, 0.3);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.pending-photo {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #48d0ff;
+}
+
+.pending-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(72, 208, 255, 0.15);
+    color: #48d0ff;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.pending-body {
+    flex: 1;
+}
+
+.pending-text {
+    font-size: 16px;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0 0 8px;
+}
+
+.pending-author {
+    font-size: 14px;
+    color: #48d0ff;
+    margin: 0 0 10px;
+}
+
+.pending-actions {
+    display: flex;
+    gap: 10px;
+
+    button {
+        padding: 6px 16px;
+        border-radius: 16px;
+        font-family: 'titillium web', sans-serif;
+        cursor: pointer;
+        border: 1px solid #48d0ff;
+        background: transparent;
+        color: #48d0ff;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: #48d0ff;
+            color: #161c20;
+        }
+
+        &.reject {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+
+            &:hover {
+                background: #ff6b6b;
+                color: #161c20;
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<section class="admin-testimonials">
+  <h2>Pending Testimonials</h2>
+
+  @if (!unlocked()) {
+    <form class="unlock-form" (ngSubmit)="unlock()">
+      <label for="admin-password">Password</label>
+      <div class="password-field">
+        <input
+          id="admin-password"
+          [type]="showPassword() ? 'text' : 'password'"
+          [(ngModel)]="password"
+          name="password"
+          autocomplete="new-password"
+          required
+        >
+        <button
+          type="button"
+          class="toggle-password"
+          (click)="showPassword.set(!showPassword())"
+          [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+        >
+          <i class="fa-solid" [class.fa-eye]="!showPassword()" [class.fa-eye-slash]="showPassword()"></i>
+        </button>
+      </div>
+
+      @if (error()) {
+        <p class="admin-error">{{ error() }}</p>
+      }
+
+      <button type="submit" [disabled]="loading()">
+        {{ loading() ? 'Checking…' : 'Unlock' }}
+      </button>
+    </form>
+  } @else {
+    <h3>Pending</h3>
+    @if (pending().length) {
+      @for (item of pending(); track item.id) {
+        <div class="pending-card">
+          @if (item.photoFilename) {
+            <img class="pending-photo" [src]="'/testimonial-photos/' + item.photoFilename" [alt]="item.name">
+          } @else {
+            <div class="pending-photo pending-photo-placeholder">{{ item.name.charAt(0) }}</div>
+          }
+          <div class="pending-body">
+            <p class="pending-text">"{{ item.quote }}"</p>
+            <p class="pending-author">— {{ item.name }}@if (item.title) {, {{ item.title }}}</p>
+            <div class="pending-actions">
+              <button type="button" class="approve" (click)="approve(item.id)">Approve</button>
+              <button type="button" class="reject" (click)="reject(item.id)">Reject</button>
+            </div>
+          </div>
+        </div>
+      }
+    } @else {
+      <p class="pending-empty">Nothing waiting for review.</p>
+    }
+
+    <hr class="admin-divider">
+
+    <h3>Approved</h3>
+    @if (approved().length) {
+      @for (item of approved(); track item.id) {
+        <div class="pending-card">
+          @if (item.photoFilename) {
+            <img class="pending-photo" [src]="'/testimonial-photos/' + item.photoFilename" [alt]="item.name">
+          } @else {
+            <div class="pending-photo pending-photo-placeholder">{{ item.name.charAt(0) }}</div>
+          }
+          <div class="pending-body">
+            <p class="pending-text">"{{ item.quote }}"</p>
+            <p class="pending-author">— {{ item.name }}@if (item.title) {, {{ item.title }}}</p>
+            <div class="pending-actions">
+              <button type="button" class="reject" (click)="deleteApproved(item.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+      }
+    } @else {
+      <p class="pending-empty">No approved testimonials yet.</p>
+    }
+  }
+
+</section>

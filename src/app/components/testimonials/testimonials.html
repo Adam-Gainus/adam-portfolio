@@ -1,0 +1,61 @@
+<section class="testimonials">
+  <h2>Testimonials</h2>
+
+  <div class="testimonials-list">
+    @if (testimonials().length) {
+      @for (testimonial of testimonials(); track testimonial.id) {
+        <div class="testimonial-card">
+          @if (testimonial.photoFilename) {
+            <img class="testimonial-photo" [src]="'/testimonial-photos/' + testimonial.photoFilename" [alt]="testimonial.name">
+          } @else {
+            <div class="testimonial-photo testimonial-photo-placeholder">{{ testimonial.name.charAt(0) }}</div>
+          }
+          <div class="testimonial-body">
+            <p class="testimonial-text">"{{ testimonial.quote }}"</p>
+            <p class="testimonial-author">— {{ testimonial.name }}@if (testimonial.title) {, {{ testimonial.title }}}</p>
+          </div>
+        </div>
+      }
+    } @else {
+      <p class="testimonials-empty">No testimonials yet — be the first to leave one below!</p>
+    }
+  </div>
+
+  <div class="testimonial-form-section">
+    <h3>Leave a testimonial</h3>
+
+    @if (submitted()) {
+      <p class="testimonials-thanks">Thanks! Your testimonial has been submitted and is waiting for approval.</p>
+    } @else {
+      <form class="testimonial-form" (ngSubmit)="submit()">
+        <label for="name">Name</label>
+        <input id="name" type="text" [(ngModel)]="name" name="name" maxlength="80" required>
+
+        <label for="title">Title / relationship (optional)</label>
+        <input id="title" type="text" [(ngModel)]="title" name="title" maxlength="100" placeholder="e.g. Coworker, Client">
+
+        <label for="quote">Testimonial</label>
+        <textarea id="quote" [(ngModel)]="quote" name="quote" maxlength="500" rows="4" required></textarea>
+
+        <label for="photo">Photo (optional)</label>
+        <input id="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" (change)="onPhotoSelected($event)">
+
+        @if (photoPreview()) {
+          <div class="photo-preview-row">
+            <img class="photo-preview" [src]="photoPreview()" alt="Selected photo preview">
+            <button type="button" class="remove-photo" (click)="removePhoto()">Remove</button>
+          </div>
+        }
+
+        @if (submitError()) {
+          <p class="testimonial-form-error">{{ submitError() }}</p>
+        }
+
+        <button type="submit" [disabled]="submitting()">
+          {{ submitting() ? 'Submitting…' : 'Submit for approval' }}
+        </button>
+      </form>
+    }
+  </div>
+
+</section>

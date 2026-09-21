@@ -11,6 +11,10 @@
 npm-debug.log
 yarn-error.log
 
+# Environment variables and server-side data
+.env
+/src/server/data
+
 # IDEs and editors
 .idea/
 .project
@@ -30,7 +34,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+/.angular
 .sass-cache/
 /connect.lock
 /coverage
