@@ -34,7 +34,7 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": []
+              "allowedHosts": ["adam-portfolio-2zp9.onrender.com"]
             },
             "ssr": {
               "entry": "src/server.ts"

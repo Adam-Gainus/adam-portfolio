@@ -28,7 +28,21 @@ import {
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+
+// Angular's SSR engine rejects requests whose Host header isn't in this list,
+// to prevent SSRF/cache-poisoning attacks — but that means it also rejects
+// legitimate requests unless the real public hostname(s) are listed here.
+// Set as a comma-separated env var (not hardcoded) so a new Render subdomain
+// or a future custom domain can be added without a code change/redeploy.
+const allowedHosts = process.env['ALLOWED_HOSTS']?.split(',').map((host) => host.trim()).filter(Boolean);
+
+const angularApp = new AngularNodeAppEngine({
+  // Render (and most PaaS hosts) sit in front of this app as a reverse proxy,
+  // forwarding the real client info via X-Forwarded-* headers — without this,
+  // Angular's SSR engine ignores those and can misidentify/reject requests.
+  trustProxyHeaders: true,
+  ...(allowedHosts?.length ? { allowedHosts } : {}),
+});
 
 // Render (and most PaaS hosts) put every request through exactly one reverse
 // proxy hop before it reaches this app. Trusting that hop lets Express read
