@@ -32,6 +32,29 @@
       </button>
     </form>
   } @else {
+    <h3>Request a testimonial</h3>
+    <form class="invite-form" (ngSubmit)="sendInvite()">
+      <label for="invite-name">Client name (optional)</label>
+      <input id="invite-name" type="text" [(ngModel)]="inviteName" name="inviteName" maxlength="80">
+
+      <label for="invite-email">Client email</label>
+      <input id="invite-email" type="email" [(ngModel)]="inviteEmail" name="inviteEmail" required>
+
+      @if (inviteError()) {
+        <p class="admin-error">{{ inviteError() }}</p>
+      }
+
+      @if (inviteSent()) {
+        <p class="invite-sent">Invite sent!</p>
+      }
+
+      <button type="submit" [disabled]="inviteSending()">
+        {{ inviteSending() ? 'Sending…' : 'Send invite' }}
+      </button>
+    </form>
+
+    <hr class="admin-divider">
+
     <h3>Pending</h3>
     @if (pending().length) {
       @for (item of pending(); track item.id) {

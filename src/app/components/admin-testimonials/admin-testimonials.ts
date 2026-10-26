@@ -37,6 +37,12 @@ export class AdminTestimonials {
   pending = signal<PendingTestimonial[]>([]);
   approved = signal<ApprovedTestimonial[]>([]);
 
+  inviteName = '';
+  inviteEmail = '';
+  inviteSending = signal(false);
+  inviteError = signal('');
+  inviteSent = signal(false);
+
   constructor(private http: HttpClient) {}
 
   unlock(): void {
@@ -79,6 +85,38 @@ export class AdminTestimonials {
     this.http.delete(`/api/testimonials/approved/${id}`, { headers: this.authHeaders() }).subscribe({
       next: () => this.approved.update((items) => items.filter((item) => item.id !== id)),
     });
+  }
+
+  sendInvite(): void {
+    this.inviteError.set('');
+    this.inviteSent.set(false);
+
+    if (!this.inviteEmail.trim()) {
+      this.inviteError.set('Please enter the client\'s email.');
+      return;
+    }
+
+    this.inviteSending.set(true);
+
+    this.http
+      .post(
+        '/api/testimonials/invite',
+        { email: this.inviteEmail.trim(), name: this.inviteName.trim() },
+        { headers: this.authHeaders() },
+      )
+      .subscribe({
+        next: () => {
+          this.inviteSending.set(false);
+          this.inviteSent.set(true);
+          this.inviteName = '';
+          this.inviteEmail = '';
+        },
+        error: (err: HttpErrorResponse) => {
+          this.inviteSending.set(false);
+          const serverMessage = typeof err.error?.error === 'string' ? err.error.error : '';
+          this.inviteError.set(serverMessage || 'Something went wrong sending the invite.');
+        },
+      });
   }
 
   private authHeaders(): HttpHeaders {

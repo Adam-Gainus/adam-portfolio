@@ -117,7 +117,8 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
         background: #0d1114;
         border: 1px solid #48d0ff;
         border-radius: 8px;
@@ -130,6 +131,10 @@
             outline: none;
             box-shadow: 0 0 0 2px rgba(72, 208, 255, 0.4);
         }
+    }
+
+    select {
+        cursor: pointer;
     }
 
     input[type='file'] {

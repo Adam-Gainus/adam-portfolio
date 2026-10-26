@@ -70,6 +70,63 @@
     }
 }
 
+.invite-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+    max-width: 320px;
+    margin: 0 auto;
+
+    label {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    input {
+        background: #0d1114;
+        border: 1px solid #48d0ff;
+        border-radius: 8px;
+        color: #d9d9d9;
+        font-family: 'titillium web', sans-serif;
+        padding: 8px 10px;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(72, 208, 255, 0.4);
+        }
+    }
+
+    button {
+        align-self: center;
+        margin-top: 12px;
+        padding: 10px 24px;
+        border: 1px solid #48d0ff;
+        border-radius: 20px;
+        background: transparent;
+        color: #48d0ff;
+        font-family: 'titillium web', sans-serif;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover:not(:disabled) {
+            background: #48d0ff;
+            color: #161c20;
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.invite-sent {
+    color: #48d0ff;
+    font-size: 14px;
+    margin: 0;
+}
+
 .password-field {
     position: relative;
     display: flex;

@@ -12,7 +12,7 @@ import rateLimit from 'express-rate-limit';
 import { existsSync, mkdirSync, unlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import { sendPendingTestimonialNotification } from './server/mailer';
+import { sendPendingTestimonialNotification, sendTestimonialInvite } from './server/mailer';
 import { containsProfanity } from './server/profanity-filter';
 import {
   addPending,
@@ -148,8 +148,8 @@ app.post('/api/testimonials', submissionLimiter, uploadPhoto, (req, res) => {
     res.status(400).json({ error: message });
   };
 
-  if (!name || !quote) {
-    rejectWith('Name and quote are required.');
+  if (!name || !title || !quote) {
+    rejectWith('Name, relationship, and quote are required.');
     return;
   }
 
@@ -206,6 +206,31 @@ app.delete('/api/testimonials/approved/:id', adminAuthLimiter, requireAdmin, (re
     return;
   }
   res.json({ ok: true });
+});
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+app.post('/api/testimonials/invite', adminAuthLimiter, requireAdmin, (req, res) => {
+  const email = typeof req.body?.email === 'string' ? req.body.email.trim() : '';
+  const name = typeof req.body?.name === 'string' ? req.body.name.trim() : '';
+
+  if (!email || !EMAIL_PATTERN.test(email) || email.length > 254) {
+    res.status(400).json({ error: 'Please enter a valid email address.' });
+    return;
+  }
+
+  if (name.length > MAX_LENGTHS.name) {
+    res.status(400).json({ error: 'Name is too long.' });
+    return;
+  }
+
+  sendTestimonialInvite({ email, name: name || undefined })
+    .then(() => res.json({ ok: true }))
+    .catch((error: unknown) => {
+      console.error('Failed to send testimonial invite:', error);
+      const message = error instanceof Error ? error.message : 'Failed to send the invite email.';
+      res.status(500).json({ error: message });
+    });
 });
 
 /**

@@ -31,8 +31,25 @@
         <label for="name">Name</label>
         <input id="name" type="text" [(ngModel)]="name" name="name" maxlength="80" required>
 
-        <label for="title">Title / relationship (optional)</label>
-        <input id="title" type="text" [(ngModel)]="title" name="title" maxlength="100" placeholder="e.g. Coworker, Client">
+        <label for="title">Your relationship to me</label>
+        <select id="title" [(ngModel)]="titleOption" name="titleOption" required>
+          <option value="" disabled>Select one…</option>
+          @for (option of titleOptions; track option) {
+            <option [value]="option">{{ option }}</option>
+          }
+        </select>
+
+        @if (titleOption === 'Other') {
+          <input
+            id="custom-title"
+            type="text"
+            [(ngModel)]="customTitle"
+            name="customTitle"
+            maxlength="100"
+            placeholder="e.g. Neighbor, Mentor"
+            required
+          >
+        }
 
         <label for="quote">Testimonial</label>
         <textarea id="quote" [(ngModel)]="quote" name="quote" maxlength="500" rows="4" required></textarea>
