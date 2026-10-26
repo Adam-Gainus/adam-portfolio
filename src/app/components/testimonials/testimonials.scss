@@ -135,6 +135,30 @@
 
     select {
         cursor: pointer;
+        width: 100%;
+        padding-right: 34px;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .select-wrapper {
+        position: relative;
+        display: flex;
+    }
+
+    .select-arrow {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #48d0ff;
+        font-size: 13px;
+        pointer-events: none;
+        transition: transform 0.2s ease;
+    }
+
+    select:focus ~ .select-arrow {
+        transform: translateY(-50%) rotate(180deg);
     }
 
     input[type='file'] {

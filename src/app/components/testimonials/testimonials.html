@@ -32,12 +32,15 @@
         <input id="name" type="text" [(ngModel)]="name" name="name" maxlength="80" required>
 
         <label for="title">Your relationship to me</label>
-        <select id="title" [(ngModel)]="titleOption" name="titleOption" required>
-          <option value="" disabled>Select one…</option>
-          @for (option of titleOptions; track option) {
-            <option [value]="option">{{ option }}</option>
-          }
-        </select>
+        <div class="select-wrapper">
+          <select id="title" [(ngModel)]="titleOption" name="titleOption" required>
+            <option value="" disabled>Select one…</option>
+            @for (option of titleOptions; track option) {
+              <option [value]="option">{{ option }}</option>
+            }
+          </select>
+          <i class="fa-solid fa-chevron-down select-arrow"></i>
+        </div>
 
         @if (titleOption === 'Other') {
           <input
