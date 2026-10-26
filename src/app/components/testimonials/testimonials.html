@@ -76,7 +76,7 @@
         <label for="quote">Testimonial</label>
         <textarea id="quote" [(ngModel)]="quote" name="quote" maxlength="500" rows="4" required></textarea>
 
-        <label for="photo">Photo (optional)</label>
+        <label for="photo">Photo (optional, but recommended)</label>
         <input id="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" (change)="onPhotoSelected($event)">
 
         @if (photoPreview()) {

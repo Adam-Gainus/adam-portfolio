@@ -13,7 +13,7 @@ interface Testimonial {
 
 const MAX_PHOTO_BYTES = 3 * 1024 * 1024;
 const ALLOWED_PHOTO_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
-const TITLE_OPTIONS = ['Client', 'Employer', 'Coworker', 'Manager', 'Classmate', 'Instructor', 'Friend', 'Other'];
+const TITLE_OPTIONS = ['Client', 'Employer', 'Coworker', 'Manager', 'Friend', 'Other'];
 
 @Component({
   selector: 'app-testimonials',
