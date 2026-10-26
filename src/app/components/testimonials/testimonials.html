@@ -31,15 +31,34 @@
         <label for="name">Name</label>
         <input id="name" type="text" [(ngModel)]="name" name="name" maxlength="80" required>
 
-        <label for="title">Your relationship to me</label>
-        <div class="select-wrapper">
-          <select id="title" [(ngModel)]="titleOption" name="titleOption" required>
-            <option value="" disabled>Select one…</option>
+        <label id="title-label">Your relationship to me</label>
+        <div class="custom-dropdown">
+          <button
+            type="button"
+            class="dropdown-trigger"
+            (click)="toggleDropdown()"
+            [attr.aria-expanded]="dropdownOpen()"
+            aria-haspopup="listbox"
+            aria-labelledby="title-label"
+          >
+            <span [class.placeholder]="!titleOption">{{ titleOption || 'Select one…' }}</span>
+            <i class="fa-solid fa-chevron-down dropdown-arrow" [class.open]="dropdownOpen()"></i>
+          </button>
+
+          <div class="dropdown-menu" [class.open]="dropdownOpen()" role="listbox">
             @for (option of titleOptions; track option) {
-              <option [value]="option">{{ option }}</option>
+              <button
+                type="button"
+                class="dropdown-option"
+                [class.selected]="option === titleOption"
+                role="option"
+                [attr.aria-selected]="option === titleOption"
+                (click)="selectTitleOption(option)"
+              >
+                {{ option }}
+              </button>
             }
-          </select>
-          <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
         </div>
 
         @if (titleOption === 'Other') {

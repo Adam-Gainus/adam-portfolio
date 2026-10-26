@@ -117,8 +117,7 @@
     }
 
     input,
-    textarea,
-    select {
+    textarea {
         background: #0d1114;
         border: 1px solid #48d0ff;
         border-radius: 8px;
@@ -133,32 +132,97 @@
         }
     }
 
-    select {
-        cursor: pointer;
-        width: 100%;
-        padding-right: 34px;
-        appearance: none;
-        -webkit-appearance: none;
-    }
-
-    .select-wrapper {
+    .custom-dropdown {
         position: relative;
-        display: flex;
     }
 
-    .select-arrow {
-        position: absolute;
-        right: 16px;
-        top: 50%;
-        transform: translateY(-50%);
+    .dropdown-trigger {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #0d1114;
+        border: 1px solid #48d0ff;
+        border-radius: 8px;
+        color: #d9d9d9;
+        font-family: 'titillium web', sans-serif;
+        font-size: 1rem;
+        padding: 8px 10px;
+        cursor: pointer;
+        text-align: left;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(72, 208, 255, 0.4);
+        }
+
+        span.placeholder {
+            color: rgba(217, 217, 217, 0.5);
+        }
+    }
+
+    .dropdown-arrow {
         color: #48d0ff;
         font-size: 13px;
-        pointer-events: none;
+        margin-left: 8px;
         transition: transform 0.2s ease;
+
+        &.open {
+            transform: rotate(180deg);
+        }
     }
 
-    select:focus ~ .select-arrow {
-        transform: translateY(-50%) rotate(180deg);
+    .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        max-height: 260px;
+        overflow-y: auto;
+        background: #1c242b;
+        border: 1px solid rgba(72, 208, 255, 0.4);
+        border-radius: 10px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+        padding: 6px;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+
+        &.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
+        }
+    }
+
+    .dropdown-option {
+        background: transparent;
+        border: none;
+        color: #d9d9d9;
+        font-family: 'titillium web', sans-serif;
+        font-size: 1rem;
+        text-align: left;
+        padding: 8px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background: rgba(72, 208, 255, 0.15);
+            outline: none;
+        }
+
+        &.selected {
+            color: #48d0ff;
+            font-weight: 600;
+        }
     }
 
     input[type='file'] {

@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -38,7 +38,30 @@ export class Testimonials implements OnInit {
   submitError = signal('');
   submitted = signal(false);
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  dropdownOpen = signal(false);
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private eRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.dropdownOpen() && !this.eRef.nativeElement.contains(event.target)) {
+      this.dropdownOpen.set(false);
+    }
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.dropdownOpen.set(false);
+  }
+
+  toggleDropdown(): void {
+    this.dropdownOpen.update((open) => !open);
+  }
+
+  selectTitleOption(option: string): void {
+    this.titleOption = option;
+    this.dropdownOpen.set(false);
+  }
 
   ngOnInit(): void {
     const nameFromLink = this.route.snapshot.queryParamMap.get('name');
